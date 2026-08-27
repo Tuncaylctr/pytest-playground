@@ -1,4 +1,4 @@
-from src.math import add_two_numbers, diff_two_numbers, mult_two_numbers
+from hands_on.src  import add_two_numbers, diff_two_numbers, mult_two_numbers
 import pytest
 
 def test_add_two_numbers():

@@ -91,3 +91,27 @@ class TestInterleave:
 
 
 
+class TestRollingAgg:
+    def test_identity(self):
+        agg_res = rolling_aggregate(range(5), window_size=3, agg_fn=lambda x: x)
+        actual_agg_res = list(agg_res)
+        expected_agg_res = [(0, (0, 1, 2)), (1, (1, 2, 3)), (2, (2, 3, 4))]
+        assert actual_agg_res == expected_agg_res
+
+    def test_sum(self):
+        agg_res = rolling_aggregate(range(5), window_size=3, agg_fn=sum)
+        actual_agg_res = list(agg_res)
+        expected_agg_res = [(0, 3), (1, 6), (2, 9)]
+        assert actual_agg_res == expected_agg_res
+
+    def test_mean_aggregation(self):
+        def mean_function(inputs):
+            return sum(inputs) / len(list(inputs))
+
+        rolling_iter = rolling_aggregate(seq=range(0, 10, 2), window_size=3, agg_fn=mean_function)
+        actual_output = list(rolling_iter)
+        expected_output = [(0, 2.0), (1, 4.0), (2, 6.0)]
+
+        for (actual_index, actual_agg_res), (expected_index, expected_agg_res) in zip(actual_output, expected_output):
+            assert actual_index == expected_index
+            assert actual_agg_res == pytest.approx(expected_agg_res)

@@ -5034,4 +5034,7 @@ def rolling_aggregate(seq, window_size, agg_fn):
         tuple: (position, result), where `position` is the index in `seq` and `result` is the
         output of `agg_fn` applied to the current window.
     """
-    pass
+    window_seq = windowed(seq, window_size)
+    for i, x in enumerate(window_seq):
+        yield i, agg_fn(x)
+

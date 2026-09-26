@@ -3,10 +3,16 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - main
+    paths:
+      - "../../ci-cd"
+      - ".github/workflows/**"
   pull_request:
     branches:
-      - master
+      - main
+    paths:
+      - "../../ci-cd"
+      - ".github/workflows/**"
 
 jobs:
   test:

@@ -19,6 +19,7 @@ dev = [
     "pytest-cov>=7.0.0",
     "hypothesis>=6.140.0",
     "faker>=37.8.0",
+    "pytest-xdist"
 ]
 
 [project.scripts]

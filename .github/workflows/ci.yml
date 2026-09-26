@@ -5,14 +5,18 @@ on:
     branches:
       - main
     paths:
-      - "../../ci-cd"
+      - "ci-cd/**"
       - ".github/workflows/**"
   pull_request:
     branches:
       - main
     paths:
-      - "../../ci-cd"
+      - "ci-cd/**"
       - ".github/workflows/**"
+
+defaults:
+  run:
+    working-directory: ci-cd
 
 jobs:
   test:
